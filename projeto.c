@@ -73,4 +73,5 @@ int salvarTarefas(ListaDeTarefas *lt, char *nome){
 
 void exibeMenu(){
     printf("Menu\n");
+    printf("1. Criar Tarefa");
 }
