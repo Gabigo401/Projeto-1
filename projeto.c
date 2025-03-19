@@ -40,18 +40,35 @@ return 0;
 }
 
 int listarTarefas(ListaDeTarefas *lt){
-    printf("Listar Tarefa\n");
+    if(lt ->qtd ==0)
+    return 1;
+
+    int i;
+    for(i=0; i<lt->qtd; i++){
+        printf("pos: %d\t Prioridade: %d\t Categoria: %s\n", i, lt->tarefas[i].prioridade, lt->tarefas[i].categoria);
+        printf("Descrição: %s\n", lt->tarefas[i].descricao);
+    }
 return 0;
 }
 
 int carregarTarefas(ListaDeTarefas *lt, char *nome){
-return 0;
+    FILE *fp=fopen(nome, "rb");
+    if(fp == NULL)
+    return 1;
 
+    fread(lt, sizeof(ListaDeTarefas),1,fp);
+    fclose(fp);
+    return 0;
 }
 
 int salvarTarefas(ListaDeTarefas *lt, char *nome){
-return 0;
+    FILE *fp=fopen(nome, "wb");
+    if(fp == NULL)
+    return 1;
 
+    fwrite(lt, sizeof(ListaDeTarefas),1,fp);
+    fclose(fp);
+    return 0;
 }
 
 void exibeMenu(){
